@@ -14,7 +14,7 @@ Tetris.Game = (function () {
                 this.stats.add(this.current_piece.type);
                 this.next_piece = Tetris.Piece.create();
                 this.prev_piece_state = this.current_piece.absolutePosition();
-                this.handleKeyPress();
+               // this.handleKeyPress();
                 //create game timer
                 this.timer = Tetris.Timer.create(this);
                 //render board and GUI components
@@ -186,7 +186,7 @@ Tetris.Game = (function () {
                             document.styleSheets[0].cssRules[8].style.opacity = ".6";
                         } else {
                             this.timer.resume();
-                            this.handleKeyPress();
+                            //this.handleKeyPress();
                             document.styleSheets[0].cssRules[8].style.opacity = "1";
                         }
                     }
@@ -233,33 +233,46 @@ Tetris.Game = (function () {
                         document.getElementById(this.id).innerHTML = s.substring(this.lines.toString().length);
                     }
                 },
-//                "control_loop": function (keyCode, direction) {
-//            console.log(keyCode);
-//                    while(self.keyState[keyCode]){
-//                        self.moveCurrentPiece(direction);
-//                        
-//                    }
-//                },
-//                "keyState" : {
-//                    
-//                },
+                "control_loop": function (keyCode, direction) {
+                    console.log(self.keyState[keyCode]);
+                    console.log(self.keyState);
+                    
+                    if(self.keyState[keyCode]){
+                        self.moveCurrentPiece(direction);
+                    }
+                    
+                },
+                "keyState" : {
+                    
+                },
+                "moveTimeOut": '',
                 "handleKeyPress": function () {
-                    var boolspace = false;
-                    document.onkeydown = function (e) {
-                        e = e || window.event;
-                           // console.log(self.keyState);
-                        if ((e.keyCode === 38 || e.keyCode === 88) && self.timer.id) {
+                        if ((self.keyState[38] || self.keyState[88]) && self.timer.id) {
                             self.moveCurrentPiece("rotate");
-                        } else if (e.keyCode === 90 && self.timer.id) {
+                            self.moveTimeOut = setTimeout(function(){
+                                self.handleKeyPress();
+                            }, 200);
+                        } else if (self.keyState[90] && self.timer.id) {
                             self.moveCurrentPiece("rotateCounter");
-                        } else if (e.keyCode === 40 && self.moveCheck && self.timer.id) {
-                           // self.control_loop(e.keyCode, "down");
+                            self.moveTimeOut = setTimeout(function(){
+                                self.handleKeyPress();
+                            }, 200);
+                        } else if (self.keyState[40] && self.moveCheck && self.timer.id) { //&& self.moveCheck
                             self.moveCurrentPiece("down");
-                        } else if (e.keyCode === 37 && self.timer.id) {
+                            self.moveTimeOut = setTimeout(function(){
+                                self.handleKeyPress();
+                            }, 40);
+                        } else if (self.keyState[37] && self.timer.id) {
                             self.moveCurrentPiece("left");
-                        } else if (e.keyCode === 39 && self.timer.id) {
+                            self.moveTimeOut = setTimeout(function(){
+                                self.handleKeyPress();
+                            }, 150);
+                        } else if (self.keyState[39] && self.timer.id) {
                             self.moveCurrentPiece("right");
-                        } else if (e.keyCode === 80){
+                            self.moveTimeOut = setTimeout(function(){
+                                self.handleKeyPress();
+                            }, 150);
+                        } else if (self.keyState[80]){
                             //check to see if id is false. meaning its paused already.
                             if(self.timer.id){
                                 self.timer.pause();
@@ -267,14 +280,14 @@ Tetris.Game = (function () {
                                 self.timer.resume();
                             }
                         }
-                    };
-                    document.onkeyup = function (e) {
-                         e = e || window.event;
-                         if(e.keyCode === 40){
-                             //down
-                             self.moveCheck = true;
-                         }
-                    };
+                     
+//                    document.onkeyup = function (e) {
+//                         e = e || window.event;
+//                         if(e.keyCode === 40){
+//                             //down
+//                             self.moveCheck = true;
+//                         }
+//                    };
                 },
                 "copyPiece": function () {
                     var copy = Tetris.Piece.create(this.current_piece.type);
@@ -514,7 +527,6 @@ Tetris.Game = (function () {
                                 self.printPiece();
                                 self.timer.start();
                             }
-                            
                             return true;
                         });
                         
@@ -524,12 +536,21 @@ Tetris.Game = (function () {
                 },
                 "render": function () {
             
-//            window.addEventListener('keydown',function(e){
-//                self.keyState[e.keyCode || e.which] = true;
-//            },true);    
-//            window.addEventListener('keyup',function(e){
-//                self.keyState[e.keyCode || e.which] = false;
-//            },true);
+            window.addEventListener('keydown',function(e){
+                if(!self.keyState[e.keyCode] || typeof self.keyState[e.keyCode] === "undefined"){
+                    self.keyState[e.keyCode || e.which] = true;
+                    self.handleKeyPress();
+                }
+                self.keyState[e.keyCode || e.which] = true;
+            },true);    
+            window.addEventListener('keyup',function(e){
+                self.keyState[e.keyCode || e.which] = false;
+                clearTimeout(self.moveTimeOut);
+                if(e.keyCode === 40){
+                    //down
+                    self.moveCheck = true;
+                }
+            },true);
             
             //pause checkbox listener
             document.getElementById('pause_game').addEventListener("change", function(e){
