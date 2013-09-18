@@ -240,9 +240,7 @@ Tetris.Game = (function () {
                     }
                     
                 },
-                "keyState" : {
-                    
-                },
+                "keyState" : {},
                 "moveTimeOut": '',
                 "handleKeyPress": function () {
                         
@@ -493,9 +491,6 @@ Tetris.Game = (function () {
                              console.log('in');
                         },100);
                     },700);
-                    
-                    
-                    
                 },
                 "generateNextPiece": function () {
                     //clone next piece by creating a new one with the same type.
@@ -617,6 +612,7 @@ Tetris.Game = (function () {
                     
                 }
             };
+            
             return new Game();
         };
         

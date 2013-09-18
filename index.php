@@ -609,6 +609,7 @@ and (min-width : 1200px) {
         }
 }
 #mainGame{
+    display:none;
     border: 3px solid #999;
     box-shadow: inset 0px 0px 50px rgb(0, 0, 0);
 border-radius: 5%;
@@ -795,132 +796,76 @@ border-right: 1px solid #999999;
 .meter-container #no_sound{
     display:none;
 }
+
+#navSettings{
+    display:none;
+}
 </style>
       
-<script>
-// var game_setup = {
-//     passSetup: false,
-//     passCredit: false,
-//     count: 1,
-//     "handleKeyPress": function () {
-//            var self = this;
-//            document.onkeydown = function (e) {
-//                e = e || window.event;
-//                if (e.keyCode === 38) {
-//                    //music up
-//                    if(self.count > 2){
-//                        document.getElementById("music").childNodes[self.count].childNodes[1].style.display = "none";
-//                        self.count -= 2;
-//                        document.getElementById("music").childNodes[self.count].childNodes[1].style.display = "block";
-//                    }
-//                        
-//                } else if (e.keyCode === 40) {
-//                    //music down
-//                    if(self.count < 7){
-//                        document.getElementById("music").childNodes[self.count].childNodes[1].style.display = "none";
-//                        self.count += 2;
-//                        document.getElementById("music").childNodes[self.count].childNodes[1].style.display = "block";
-//                    }
-//                    
-//                } else if (e.keyCode === 37) {
-//                    //type left
-//                    document.getElementById("B_type").style.display = "none";
-//                    document.getElementById("A_type").style.display = "block";
-//                } else if (e.keyCode === 39) {
-//                    //type right
-//                    document.getElementById("A_type").style.display = "none";
-//                    document.getElementById("B_type").style.display = "block";
-//                } else if (e.keyCode === 13){
-//                    //enter
-//                    if(self.passSetup){
-//                        console.log('game starting');
-//                        document.getElementById('game_setup').style.display = 'none';
-//                        document.getElementById('mainGame').style.display = 'block';
-//                        Tetris.Game.create();
-//                    } else if (self.passCredit){
-//                         self.passSetup = true;
-//                         document.getElementById('start_screen').style.display = 'none';
-//                         document.getElementById('game_setup').style.display = 'block';
-//                    }
-//                    
-//                }
-//            };
-//        }
-// };
-     
-
-    
-function load()
-{
-    Tetris.Game.create();
-   
-}
-</script>     
+ 
 </head>
-<body onload="load();">
+<body onload="">
+<audio id="player" loop="loop" >
+    <source src="music/Music_1.ogg" type="audio/ogg">
+    <embed  src="music/Music_1.ogg">
+    Your browser does not support this audio format.
+</audio>
+    <nav id='navSettings' class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <p class="navbar-text pull-right"><a href="#" id="settings" class="navbar-link" ><i class="icon-cog icon-3x" ></i></a></p>
+        <div id="options">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" id="pause_game"> Pause Game
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+             <input type="checkbox" checked='true' id='music_switch'> Music
+            </label>
+          </div>
+          <div class='meter-container'>
+            <input type="range" value='100' name="points" min="1" id='music_meter' max="100">
+            <label id='no_sound' >No sound</label>
+          </div>
+          <table class="table">
+              <tr>
+                  <td>Rotate Clockwise</td>
+                  <td>Up Arrow</td>
+              </tr>
+              <tr>
+                  <td>Rotate</td>
+                  <td>Z and X</td>
+              </tr>
+              <tr>
+                  <td>Move Down</td>
+                  <td>Down Arrow</td>
+              </tr>
+              <tr>
+                  <td>Move Left</td>
+                  <td>Left Arrow</td>
+              </tr>
+              <tr>
+                  <td>Move Right</td>
+                  <td>Right Arrow</td>
+              </tr>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <p class="navbar-text pull-right"><a href="#" id="settings" class="navbar-link" ><i class="icon-cog icon-3x" ></i></a></p>
-    <div id="options">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" id="pause_game"> Pause Game
-        </label>
-      </div>
-      <div class="checkbox">
-        <label>
-         <input type="checkbox" checked='true' id='music_switch'> Music
-        </label>
-          <audio id="player" loop="loop" autoplay='autoplay' >
-            <!--<source src="horse.mp3" type="audio/mpeg">-->
-            <source src="music/Music_1.ogg" type="audio/ogg">
-            <embed  src="music/Music_1.ogg">
-            Your browser does not support this audio format.
-          </audio>
-      </div>
-      <div class='meter-container'>
-        <input type="range" value='100' name="points" min="1" id='music_meter' max="100">
-        <label id='no_sound' >No sound</label>
-      </div>
-      <table class="table">
-          <tr>
-              <td>Rotate Clockwise</td>
-              <td>Up Arrow</td>
-          </tr>
-          <tr>
-              <td>Rotate</td>
-              <td>Z and X</td>
-          </tr>
-          <tr>
-              <td>Move Down</td>
-              <td>Down Arrow</td>
-          </tr>
-          <tr>
-              <td>Move Left</td>
-              <td>Left Arrow</td>
-          </tr>
-          <tr>
-              <td>Move Right</td>
-              <td>Right Arrow</td>
-          </tr>
-          
-      </table>
-        <div style="text-align:right;">
-           <button type="button" class="btn btn-primary btn-sm" id='quit'>quit</button>
-           <button type="button" class="btn btn-primary btn-sm" id='restart'>restart</button>
+          </table>
+            <div style="text-align:right;">
+               <button type="button" class="btn btn-primary btn-sm" id='quit'>quit</button>
+               <button type="button" class="btn btn-primary btn-sm" id='restart'>restart</button>
+            </div>
         </div>
-    </div>
     </nav>
     
-<!--    <div id='start_credit'>
+    <div id='start_credit'>
         <img class ='img-responsive' src='img/startCredit.jpg' />
     </div>
     
     <div id='start_screen'>
         <img class ='img-responsive' src='img/startScreen.png' />
-    </div>-->
+    </div>
     
-<!--    <div id='game_setup'>
+    <div id='game_setup'>
         <ul id='game_type'>
             <li >
                 <div id='B_type'>
@@ -962,7 +907,7 @@ function load()
                 </div>
             </li>
         </ul>
-    </div>-->
+    </div>
 
     <div id='mainGame' class="container" >
         <div id="column1" class="col-lg-3 col-md-3 col-sm-3">
@@ -1026,5 +971,126 @@ function load()
     </div>
     
 <script src="js/music.js"></script>
+<script>
+    
+ var setup = (function(){
+     var passSetup = false;
+     var player = document.getElementById('player');
+     var passCredit = false;
+     var count = 1;
+     var currMusic = 1;
+     var game;
+     var audio = {
+        sounds : {
+            high_score : "music/High_Score.ogg",
+            success : 'music/Success.ogg',
+            victory : 'music/Victory.ogg',
+            unknown : 'music/Unknown.ogg'
+        },
+        music : {
+            normal : {
+              music_1 : 'music/Music_1.ogg',
+              music_2 : 'music/Music_2.ogg',
+              music_3 : 'music/Music_3.ogg'
+            },
+            fast : {
+              music_1_fast : 'music/Music_1_fast.ogg',
+              music_2_fast : 'music/Music_2_fast.ogg',
+              music_3_fast : 'music/Music_3_fast.ogg' 
+            }  
+        }
+    };
+    
+     var playMusic = function (direction) {
+         if(direction === "up"){
+             currMusic -= 1;
+         }else{
+             currMusic += 1;
+         }
+         console.log(audio.music.normal);
+         console.log("music_" + currMusic);
+         console.log(player);
+         player.children[0].src = audio.music.normal["music_" + currMusic];
+         player.load();
+         player.play();
+     };
+     var handleKeyPress = (function(){
+       
+       //TODO need to use children instead of childNodes
+            document.onkeydown = function (e) {
+                e = e || window.event;
+                if (e.keyCode === 38) {
+                    //music up
+                    if(count > 2){
+                        document.getElementById("music").childNodes[count].childNodes[1].style.display = "none";
+                        count -= 2;
+                        document.getElementById("music").childNodes[count].childNodes[1].style.display = "block";
+                        playMusic("up");
+                    }
+                        
+                } else if (e.keyCode === 40) {
+                    //music down
+                    if(count < 7){
+                        document.getElementById("music").childNodes[count].childNodes[1].style.display = "none";
+                        count += 2;
+                        document.getElementById("music").childNodes[count].childNodes[1].style.display = "block";
+                        playMusic("down");
+                    }
+                    
+                } else if (e.keyCode === 37) {
+                    //type left
+                    document.getElementById("B_type").style.display = "none";
+                    document.getElementById("A_type").style.display = "block";
+                } else if (e.keyCode === 39) {
+                    //type right
+                    document.getElementById("A_type").style.display = "none";
+                    document.getElementById("B_type").style.display = "block";
+                } else if (e.keyCode === 13){
+                    //enter
+                    if(passSetup){
+                        console.log('game starting');
+                        document.getElementById('game_setup').style.display = 'none';
+                        document.getElementById('navSettings').style.display = 'block';
+                        document.getElementById('mainGame').style.display = 'block';
+                        document.onkeydown = '';
+                        game = Tetris.Game.create();
+                       
+                    } else if (passCredit){
+                         passSetup = true;
+                         document.getElementById('start_screen').style.display = 'none';
+                         document.getElementById('game_setup').style.display = 'block';
+                         player.play();
+                    }
+                }
+            };
+        }());
+        
+        setTimeout(function(){
+          document.getElementById('start_credit').style.display = 'none'; 
+          document.getElementById('start_screen').style.display = 'block';
+          passCredit = true;
+        },1000);
+        
+
+        return {
+            getGame: function () {
+                return game;
+            },
+            endGame: function () {
+                return game.gameOver();
+            }
+            
+        };
+ }());
+
+     
+
+    
+//function load()
+//{
+//    Tetris.Game.create();
+//   
+//}
+</script>    
 </body>
 </html>
