@@ -786,6 +786,15 @@ border-right: 1px solid #999999;
     clear: both;
 }
 
+.meter-container{
+    height:40px;
+    text-align:center;
+    font-size:20px;
+}
+
+.meter-container #no_sound{
+    display:none;
+}
 </style>
       
 <script>
@@ -839,21 +848,16 @@ border-right: 1px solid #999999;
 //        }
 // };
      
-     
+
+    
 function load()
 {
     Tetris.Game.create();
-    
-//    game_setup.handleKeyPress();
-//    setTimeout(function(){
-//        document.getElementById('start_credit').style.display = "none";
-//        document.getElementById('start_screen').style.display = "block";
-//        game_setup.passCredit = true;
-//    },5000)
+   
 }
 </script>     
 </head>
-<body onload="load()">
+<body onload="load();">
 
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <p class="navbar-text pull-right"><a href="#" id="settings" class="navbar-link" ><i class="icon-cog icon-3x" ></i></a></p>
@@ -865,8 +869,18 @@ function load()
       </div>
       <div class="checkbox">
         <label>
-          <input type="checkbox"> Music
+         <input type="checkbox" checked='true' id='music_switch'> Music
         </label>
+          <audio id="player" loop="loop" autoplay='autoplay' >
+            <!--<source src="horse.mp3" type="audio/mpeg">-->
+            <source src="music/Music_1.ogg" type="audio/ogg">
+            <embed  src="music/Music_1.ogg">
+            Your browser does not support this audio format.
+          </audio>
+      </div>
+      <div class='meter-container'>
+        <input type="range" value='100' name="points" min="1" id='music_meter' max="100">
+        <label id='no_sound' >No sound</label>
       </div>
       <table class="table">
           <tr>
@@ -890,11 +904,10 @@ function load()
               <td>Right Arrow</td>
           </tr>
           
-          
-          
       </table>
         <div style="text-align:right;">
-        <button type="button" class="btn btn-primary btn-sm">restart</button>
+           <button type="button" class="btn btn-primary btn-sm" id='quit'>quit</button>
+           <button type="button" class="btn btn-primary btn-sm" id='restart'>restart</button>
         </div>
     </div>
     </nav>
@@ -1012,7 +1025,6 @@ function load()
         </div>
     </div>
     
-
+<script src="js/music.js"></script>
 </body>
-
 </html>

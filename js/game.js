@@ -556,35 +556,43 @@ Tetris.Game = (function () {
                 },
                 "render": function () {
             
-            window.addEventListener('keydown',function(e){
-                if(!self.keyState[e.keyCode] || typeof self.keyState[e.keyCode] === "undefined"){
-                    self.keyState[e.keyCode || e.which] = true;
-                    self.handleKeyPress();
-                }
-                self.keyState[e.keyCode || e.which] = true;
-            },true);    
-            window.addEventListener('keyup',function(e){
-                self.keyState[e.keyCode || e.which] = false;
-                clearTimeout(self.moveTimeOut);
-                if(e.keyCode === 40){
-                    //down
-                    self.moveCheck = true;
-                }
-            },true);
-            
-            //pause checkbox listener
-            document.getElementById('pause_game').addEventListener("change", function(e){
-                if(this.checked){
-                    self.timer.pause();
-                }else{
-                    self.timer.resume();
-                }
-            });
+                    window.addEventListener('keydown',function(e){
+                        if(!self.keyState[e.keyCode] || typeof self.keyState[e.keyCode] === "undefined"){
+                            self.keyState[e.keyCode || e.which] = true;
+                            self.handleKeyPress();
+                        }
+                        self.keyState[e.keyCode || e.which] = true;
+                    },true);    
+                    window.addEventListener('keyup',function(e){
+                        self.keyState[e.keyCode || e.which] = false;
+                        clearTimeout(self.moveTimeOut);
+                        if(e.keyCode === 40){
+                            //down
+                            self.moveCheck = true;
+                        }
+                    },true);
+
+                    //pause checkbox listener
+                    document.getElementById('pause_game').addEventListener("change", function(e){
+                        if(this.checked){
+                            self.timer.pause();
+                        }else{
+                            self.timer.resume();
+                        }
+                    });
                     this.gameBtns.quit = new Tetris.Buttons.create({id: 'quit', click: function () {
                         if (!self.isGameOver) {
                             self.timer.stop();
                             self.isGameOver = true;
                             self.gameOver();
+                        }
+                    }});
+                    this.gameBtns.restart = new Tetris.Buttons.create({id: 'restart', click: function () {
+                        if (!self.isGameOver) {
+                            self.timer.stop();
+                            self.isGameOver = true;
+                           
+                            Tetris.Game.create();
                         }
                     }});
                     this.gameBtns.start = new Tetris.Buttons.create({id: 'start', click: function () {
@@ -611,6 +619,7 @@ Tetris.Game = (function () {
             };
             return new Game();
         };
+        
     return {
         create: create
     };
