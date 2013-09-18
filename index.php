@@ -728,14 +728,14 @@ body{
     position: relative;
 }
 
-#A_type{
+#A_type {
     display:block;
 }
-#B_type{
+#B_type {
     display:none;
 }
 
-#music_1_left, #music_2_left, #music_3_left, #music_off_left{
+#music_1_left, #music_2_left, #music_3_left, #music_off_left {
     top:3px;
     background-image: url(img/leftArrow.gif);
     width: 25px;
@@ -744,7 +744,8 @@ body{
     left: 4px;
     position: relative;
 }
-#music_1_right, #music_2_right, #music_3_right, #music_off_right{
+
+#music_1_right, #music_2_right, #music_3_right, #music_off_right {
     background-image: url(img/rightArrow.gif);
     width: 25px;
     height: 25px;
@@ -753,14 +754,16 @@ body{
     right: 11px;
     position: relative;
 }
-#options{
+
+#options {
    
     background: rgb(57, 58, 57);
     color:white;
     padding:10px;
     display:none;
 }
- .checkbox {
+
+.checkbox {
 display: block;
 min-height: 20px;
 margin-top: 0px;
@@ -777,11 +780,15 @@ border: 1px solid #999999;
 border-right: 1px solid #999999;
 }
 
+.gameOver{
+    height: 19px;
+    background: url(img/game_over_line.png);
+    clear: both;
+}
 
-
-      </style>
+</style>
       
- <script>
+<script>
 // var game_setup = {
 //     passSetup: false,
 //     passCredit: false,

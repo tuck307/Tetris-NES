@@ -107,14 +107,14 @@ Tetris.Piece = (function () {
                 var that = new Piece({x:4,y:1});
                 that.type = "J";
                 that.class = "J_piece",
-                that.rotations = [[new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 2)], [new Point(1, 2), new Point(1, 1), new Point(1, 0), new Point(2, 0)], [new Point(0, 0), new Point(0, 1), new Point(1, 1), new Point(2, 1)], [new Point(0, 2), new Point(1, 2), new Point(1, 1), new Point(1, 0)]];
+                that.rotations = [[new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 2)], [new Point(0, 2), new Point(1, 2), new Point(1, 1), new Point(1, 0)], [new Point(0, 0), new Point(0, 1), new Point(1, 1), new Point(2, 1)], [new Point(1, 2), new Point(1, 1), new Point(1, 0), new Point(2, 0)]];
                 return that;
             },
             "L": function () {
                 var that = new Piece({x:4,y:2});
                 that.type = "L";
                 that.class = "L_piece",
-                that.rotations = [[new Point(0, 1), new Point(0, 0), new Point(1, 0), new Point(2, 0)], [ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 0)], [new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(1, 2)], [new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 2)]];
+                that.rotations = [[new Point(0, 1), new Point(0, 0), new Point(1, 0), new Point(2, 0)], [new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 2)], [ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 0)], [new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(1, 2)]];
                 return that;
             },
             "T": function () {

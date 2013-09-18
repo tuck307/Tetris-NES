@@ -137,15 +137,13 @@ Tetris.Game = (function () {
                     var p, i, prev;
                     p = this.current_piece.absolutePosition();
                     prev = this.prev_piece_state;
-                    
-                    
 
                     for (i = 0; i < prev.length; i += 1) {
                         
                         var cl = document.getElementById('game').childNodes[prev[i].y].childNodes[prev[i].x].className;
                         
                         if( cl !== 'inner ' + this.current_piece.class && cl !== 'inner' && cl !== this.current_piece.class + this.game_level.level + " inner"){
-                           document.getElementById('game').childNodes[prev[i].y].childNodes[prev[i].x].className = "innerHidden"
+                           document.getElementById('game').childNodes[prev[i].y].childNodes[prev[i].x].className = "innerHidden";
                         }else{
                             document.getElementById('game').childNodes[prev[i].y].childNodes[prev[i].x].className = 'inner';
                         }
@@ -247,17 +245,18 @@ Tetris.Game = (function () {
                 },
                 "moveTimeOut": '',
                 "handleKeyPress": function () {
+                        
                         if ((self.keyState[38] || self.keyState[88]) && self.timer.id) {
                             self.moveCurrentPiece("rotate");
-                            self.moveTimeOut = setTimeout(function(){
-                                self.handleKeyPress();
-                            }, 200);
+//                            self.moveTimeOut = setTimeout(function(){
+//                                self.handleKeyPress();
+//                            }, 200);
                         } else if (self.keyState[90] && self.timer.id) {
                             self.moveCurrentPiece("rotateCounter");
-                            self.moveTimeOut = setTimeout(function(){
-                                self.handleKeyPress();
-                            }, 200);
-                        } else if (self.keyState[40] && self.moveCheck && self.timer.id) { //&& self.moveCheck
+//                            self.moveTimeOut = setTimeout(function(){
+//                                self.handleKeyPress();
+//                            }, 200);
+                        } else if (self.keyState[40] && self.moveCheck && self.timer.id) { 
                             self.moveCurrentPiece("down");
                             self.moveTimeOut = setTimeout(function(){
                                 self.handleKeyPress();
@@ -470,7 +469,7 @@ Tetris.Game = (function () {
                 },
                 "gameOver": function () {
                     //need to disable the game, timer and the key listeners. This should be left static.
-                    var p = this.current_piece.absolutePosition(), i;
+                    var p = this.current_piece.absolutePosition(), i, y, time, counter = 2;
                     console.log("game over");
                     this.removeListeners();
                     this.timer.stop();
@@ -478,6 +477,25 @@ Tetris.Game = (function () {
                        document.getElementById('game').childNodes[p[i].y].childNodes[p[i].x].className =  this.current_piece.class + this.game_level.level + " inner";
                     }
                     this.isGameOver = true;
+                    
+                    
+                    setTimeout(function(){ 
+                        time = setInterval(function(){
+                             document.getElementById('game').childNodes[counter].className = "gameOver";
+                             for(y = 0; y < self.board.width; y++){
+                                 document.getElementById('game').childNodes[counter].childNodes[y].className = "inner";
+                                 document.getElementById('game').childNodes[counter].childNodes[y].style.border = "none";
+                             }
+                             counter++;
+                             if(counter === 22){
+                                 clearInterval(time);
+                             }
+                             console.log('in');
+                        },100);
+                    },700);
+                    
+                    
+                    
                 },
                 "generateNextPiece": function () {
                     //clone next piece by creating a new one with the same type.
@@ -489,8 +507,6 @@ Tetris.Game = (function () {
                     this.printNextPiece(this.next_piece);
                 },
                 "moveCurrentPiece": function (direction) {
-           
-                    self.moveCheck = true;
                     //boolean
                     var collision = this.collide(direction);
                     if (!collision) {
@@ -509,7 +525,11 @@ Tetris.Game = (function () {
                         }
                         return this.printPiece();
                     } else if (collision && direction === "down") {
-                        self.moveCheck = false;
+                        //this fixes the issue when the users holds the down button. It disables the down action after spawn just like in the game.
+                        if(self.keyState[40]){
+                            self.moveCheck = false;
+                        }
+                        
                         //freeze the piece on the board and game grid
                         this.freezePiece();
                         //check for full rows on the board.
