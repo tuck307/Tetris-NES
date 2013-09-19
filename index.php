@@ -805,11 +805,17 @@ border-right: 1px solid #999999;
  
 </head>
 <body onload="">
-<audio id="player" loop="loop" >
+    
+<!--<audio id="tetris_music_player" loop="loop" >
     <source src="music/Music_1.ogg" type="audio/ogg">
     <embed  src="music/Music_1.ogg">
     Your browser does not support this audio format.
 </audio>
+<audio id="tetris_sound_player" >
+    <source src="" type="audio/ogg">
+    <embed  src="">
+    Your browser does not support this audio format.
+</audio>-->
     <nav id='navSettings' class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <p class="navbar-text pull-right"><a href="#" id="settings" class="navbar-link" ><i class="icon-cog icon-3x" ></i></a></p>
         <div id="options">
@@ -818,13 +824,17 @@ border-right: 1px solid #999999;
               <input type="checkbox" id="pause_game"> Pause Game
             </label>
           </div>
+          <div id="Game_audio">
+
+          </div>
           <div class="checkbox">
-            <label>
-             <input type="checkbox" checked='true' id='music_switch'> Music
+            <label id='music_switch'>
+             <!--<input type="checkbox" checked='true' > -->
+            Music
             </label>
           </div>
-          <div class='meter-container'>
-            <input type="range" value='100' name="points" min="1" id='music_meter' max="100">
+          <div class='meter-container' id="meter_container">
+            <!--<input type="range" value='100' name="points" min="1" id='music_meter' max="100">-->
             <label id='no_sound' >No sound</label>
           </div>
           <table class="table">
@@ -975,45 +985,9 @@ border-right: 1px solid #999999;
     
  var setup = (function(){
      var passSetup = false;
-     var player = document.getElementById('player');
      var passCredit = false;
-     var count = 1;
-     var currMusic = 1;
-     var game;
-     var audio = {
-        sounds : {
-            high_score : "music/High_Score.ogg",
-            success : 'music/Success.ogg',
-            victory : 'music/Victory.ogg',
-            unknown : 'music/Unknown.ogg'
-        },
-        music : {
-            normal : {
-              music_1 : 'music/Music_1.ogg',
-              music_2 : 'music/Music_2.ogg',
-              music_3 : 'music/Music_3.ogg'
-            },
-            fast : {
-              music_1_fast : 'music/Music_1_fast.ogg',
-              music_2_fast : 'music/Music_2_fast.ogg',
-              music_3_fast : 'music/Music_3_fast.ogg' 
-            }  
-        }
-    };
-    
-     var playMusic = function (direction) {
-         if(direction === "up"){
-             currMusic -= 1;
-         }else{
-             currMusic += 1;
-         }
-         console.log(audio.music.normal);
-         console.log("music_" + currMusic);
-         console.log(player);
-         player.children[0].src = audio.music.normal["music_" + currMusic];
-         player.load();
-         player.play();
-     };
+     var count = 0;
+     
      var handleKeyPress = (function(){
        
        //TODO need to use children instead of childNodes
@@ -1021,20 +995,24 @@ border-right: 1px solid #999999;
                 e = e || window.event;
                 if (e.keyCode === 38) {
                     //music up
-                    if(count > 2){
-                        document.getElementById("music").childNodes[count].childNodes[1].style.display = "none";
-                        count -= 2;
-                        document.getElementById("music").childNodes[count].childNodes[1].style.display = "block";
-                        playMusic("up");
+                    if(count > 0){
+                        document.getElementById("music").children[count].childNodes[1].style.display = "none";
+                        count -= 1;
+                        document.getElementById("music").children[count].childNodes[1].style.display = "block";
+                        Tetris.Game.Audio.music_player.trackUp(true);
+                    } else {
+                        Tetris.Game.Audio.sound_player.play('ping');
                     }
                         
                 } else if (e.keyCode === 40) {
                     //music down
-                    if(count < 7){
-                        document.getElementById("music").childNodes[count].childNodes[1].style.display = "none";
-                        count += 2;
-                        document.getElementById("music").childNodes[count].childNodes[1].style.display = "block";
-                        playMusic("down");
+                    if(count < 3){
+                        document.getElementById("music").children[count].childNodes[1].style.display = "none";
+                        count += 1;
+                        document.getElementById("music").children[count].childNodes[1].style.display = "block";
+                        Tetris.Game.Audio.music_player.trackDown(true);
+                    } else {
+                        Tetris.Game.Audio.sound_player.play('ping');
                     }
                     
                 } else if (e.keyCode === 37) {
@@ -1059,7 +1037,7 @@ border-right: 1px solid #999999;
                          passSetup = true;
                          document.getElementById('start_screen').style.display = 'none';
                          document.getElementById('game_setup').style.display = 'block';
-                         player.play();
+                         Tetris.Game.Audio.music_player.play();
                     }
                 }
             };
@@ -1070,27 +1048,10 @@ border-right: 1px solid #999999;
           document.getElementById('start_screen').style.display = 'block';
           passCredit = true;
         },1000);
-        
-
-        return {
-            getGame: function () {
-                return game;
-            },
-            endGame: function () {
-                return game.gameOver();
-            }
-            
-        };
+         
  }());
 
      
-
-    
-//function load()
-//{
-//    Tetris.Game.create();
-//   
-//}
 </script>    
 </body>
 </html>

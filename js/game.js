@@ -524,7 +524,7 @@ Tetris.Game = (function () {
                         if(self.keyState[40]){
                             self.moveCheck = false;
                         }
-                        
+                        Tetris.Game.Audio.sound_player.play('drop');
                         //freeze the piece on the board and game grid
                         this.freezePiece();
                         //check for full rows on the board.
@@ -583,12 +583,7 @@ Tetris.Game = (function () {
                         }
                     }});
                     this.gameBtns.restart = new Tetris.Buttons.create({id: 'restart', click: function () {
-                        if (!self.isGameOver) {
-                            self.timer.stop();
-                            self.isGameOver = true;
-                           
-                            Tetris.Game.create();
-                        }
+                        location.reload();
                     }});
                     this.gameBtns.start = new Tetris.Buttons.create({id: 'start', click: function () {
                         self.timer.start();
