@@ -69,46 +69,46 @@ Tetris.Game = (function () {
                     
                    for (var i = 0; i < my_arr.length; i += 1){
                         if (my_arr[i].type === 'T') {
-                            document.getElementById("T_stat").childNodes[0].childNodes[0].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("T_stat").childNodes[0].childNodes[1].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("T_stat").childNodes[0].childNodes[2].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("T_stat").childNodes[1].childNodes[1].className = my_arr[i].class + this.game_level.level + " inner";
+                            document.getElementById("T_stat").childNodes[0].childNodes[0].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("T_stat").childNodes[0].childNodes[1].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("T_stat").childNodes[0].childNodes[2].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("T_stat").childNodes[1].childNodes[1].className = my_arr[i].cssClass + this.game_level.level + " inner";
                             
                         } else if (my_arr[i].type === "J"){
-                            document.getElementById("J_stat").childNodes[0].childNodes[0].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("J_stat").childNodes[0].childNodes[1].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("J_stat").childNodes[0].childNodes[2].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("J_stat").childNodes[1].childNodes[2].className = my_arr[i].class + this.game_level.level + " inner";
+                            document.getElementById("J_stat").childNodes[0].childNodes[0].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("J_stat").childNodes[0].childNodes[1].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("J_stat").childNodes[0].childNodes[2].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("J_stat").childNodes[1].childNodes[2].className = my_arr[i].cssClass + this.game_level.level + " inner";
                             
                         }else if (my_arr[i].type === "Z"){
-                            document.getElementById("Z_stat").childNodes[0].childNodes[0].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("Z_stat").childNodes[0].childNodes[1].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("Z_stat").childNodes[1].childNodes[1].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("Z_stat").childNodes[1].childNodes[2].className = my_arr[i].class + this.game_level.level + " inner";
+                            document.getElementById("Z_stat").childNodes[0].childNodes[0].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("Z_stat").childNodes[0].childNodes[1].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("Z_stat").childNodes[1].childNodes[1].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("Z_stat").childNodes[1].childNodes[2].className = my_arr[i].cssClass + this.game_level.level + " inner";
                             
                         }else if (my_arr[i].type === "O"){
-                            document.getElementById("O_stat").childNodes[0].childNodes[0].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("O_stat").childNodes[0].childNodes[1].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("O_stat").childNodes[1].childNodes[0].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("O_stat").childNodes[1].childNodes[1].className = my_arr[i].class + this.game_level.level + " inner";
+                            document.getElementById("O_stat").childNodes[0].childNodes[0].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("O_stat").childNodes[0].childNodes[1].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("O_stat").childNodes[1].childNodes[0].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("O_stat").childNodes[1].childNodes[1].className = my_arr[i].cssClass + this.game_level.level + " inner";
                             
                         }else if (my_arr[i].type === "S"){
-                            document.getElementById("S_stat").childNodes[0].childNodes[1].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("S_stat").childNodes[0].childNodes[2].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("S_stat").childNodes[1].childNodes[0].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("S_stat").childNodes[1].childNodes[1].className = my_arr[i].class + this.game_level.level + " inner";
+                            document.getElementById("S_stat").childNodes[0].childNodes[1].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("S_stat").childNodes[0].childNodes[2].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("S_stat").childNodes[1].childNodes[0].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("S_stat").childNodes[1].childNodes[1].className = my_arr[i].cssClass + this.game_level.level + " inner";
                             
                         }else if (my_arr[i].type === "L"){
-                            document.getElementById("L_stat").childNodes[0].childNodes[0].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("L_stat").childNodes[1].childNodes[0].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("L_stat").childNodes[0].childNodes[1].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("L_stat").childNodes[0].childNodes[2].className = my_arr[i].class + this.game_level.level + " inner";
+                            document.getElementById("L_stat").childNodes[0].childNodes[0].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("L_stat").childNodes[1].childNodes[0].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("L_stat").childNodes[0].childNodes[1].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("L_stat").childNodes[0].childNodes[2].className = my_arr[i].cssClass + this.game_level.level + " inner";
                             
                         }else if (my_arr[i].type === "I"){
-                            document.getElementById("I_stat").childNodes[0].childNodes[0].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("I_stat").childNodes[0].childNodes[1].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("I_stat").childNodes[0].childNodes[2].className = my_arr[i].class + this.game_level.level + " inner";
-                            document.getElementById("I_stat").childNodes[0].childNodes[3].className = my_arr[i].class + this.game_level.level + " inner";
+                            document.getElementById("I_stat").childNodes[0].childNodes[0].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("I_stat").childNodes[0].childNodes[1].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("I_stat").childNodes[0].childNodes[2].className = my_arr[i].cssClass + this.game_level.level + " inner";
+                            document.getElementById("I_stat").childNodes[0].childNodes[3].className = my_arr[i].cssClass + this.game_level.level + " inner";
                         }
                     }
                 },
@@ -130,7 +130,7 @@ Tetris.Game = (function () {
                         temp = 1;
                     }
                     for (i = 0; i < p.length; i += 1) {
-                        document.getElementById("nextPiece").childNodes[p[i].y].childNodes[p[i].x + temp].className = the_piece.class + this.game_level.level + " inner";
+                        document.getElementById("nextPiece").childNodes[p[i].y].childNodes[p[i].x + temp].className = the_piece.cssClass + this.game_level.level + " inner";
                     }
                 },
                 "printPiece": function (div) {
@@ -142,7 +142,7 @@ Tetris.Game = (function () {
                         
                         var cl = document.getElementById('game').childNodes[prev[i].y].childNodes[prev[i].x].className;
                         
-                        if( cl !== 'inner ' + this.current_piece.class && cl !== 'inner' && cl !== this.current_piece.class + this.game_level.level + " inner"){
+                        if( cl !== 'inner ' + this.current_piece.cssClass && cl !== 'inner' && cl !== this.current_piece.cssClass + this.game_level.level + " inner"){
                            document.getElementById('game').childNodes[prev[i].y].childNodes[prev[i].x].className = "innerHidden";
                         }else{
                             document.getElementById('game').childNodes[prev[i].y].childNodes[prev[i].x].className = 'inner';
@@ -152,9 +152,9 @@ Tetris.Game = (function () {
                     
                     for (i = 0; i < p.length; i += 1) {
                         if(document.getElementById('game').childNodes[p[i].y].childNodes[p[i].x].className === "innerHidden"){
-                            document.getElementById('game').childNodes[p[i].y].childNodes[p[i].x].className += " " + this.current_piece.class + this.game_level.level + " inner";
+                            document.getElementById('game').childNodes[p[i].y].childNodes[p[i].x].className += " " + this.current_piece.cssClass + this.game_level.level + " inner";
                         }else{
-                            document.getElementById('game').childNodes[p[i].y].childNodes[p[i].x].className =  this.current_piece.class + this.game_level.level + " inner";
+                            document.getElementById('game').childNodes[p[i].y].childNodes[p[i].x].className =  this.current_piece.cssClass + this.game_level.level + " inner";
                         }
                         
                         this.prev_piece_state[i].x = p[i].x;
@@ -293,7 +293,8 @@ Tetris.Game = (function () {
                     return copy;
                 },
                 "clearRows" : function(total, callBack) {
-            
+                    
+                    Tetris.Game.Audio.sound_player.play('clearSingle');
                     var rows = total.length;
                     var down = 5;
                     var up = 4;
@@ -472,7 +473,7 @@ Tetris.Game = (function () {
                     this.removeListeners();
                     this.timer.stop();
                     for (i = 0; i < p.length; i += 1) {
-                       document.getElementById('game').childNodes[p[i].y].childNodes[p[i].x].className =  this.current_piece.class + this.game_level.level + " inner";
+                       document.getElementById('game').childNodes[p[i].y].childNodes[p[i].x].className =  this.current_piece.cssClass + this.game_level.level + " inner";
                     }
                     this.isGameOver = true;
                     

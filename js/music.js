@@ -51,9 +51,9 @@ Tetris.Game.Audio = (function(){
                  meter.value = '100';
                  meter.min = '1';
                  meter.max = '100';
-                 meter.addEventListener("change", function(e){
+                 meter.onchange = function(e){
                     player.volume = meter.value * .01;
-                 });
+                 };
                  document.getElementById('meter_container').appendChild(meter);
                  return meter;
              }());
@@ -64,9 +64,9 @@ Tetris.Game.Audio = (function(){
                  music_switch.type = "checkbox";
                  music_switch.disabled = false;
                  music_switch.checked = 'true';
-                 music_switch.addEventListener("change", function (ob) {
+                 music_switch.onchange = function (ob) {
                       music_switch.checked ? (play(),  meter.style.display = "", sound_lbl.style.display = "") : (pause(), meter.style.display = "none", sound_lbl.style.display = "block");
-                 });
+                 };
                  document.getElementById('music_switch').appendChild(music_switch);
                  return music_switch;
              }());
@@ -142,7 +142,8 @@ Tetris.Game.Audio = (function(){
                    victory : 'music/Victory.ogg',
                    unknown : 'music/Unknown.ogg',
                    drop : 'music/drop.ogg',
-                   ping : 'music/ping.ogg'
+                   ping : 'music/ping.ogg',
+                   clearSingle : 'music/clearSingle.ogg'
                }
             };
             var player = (function() {

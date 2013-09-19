@@ -75,52 +75,52 @@ Tetris.Piece = (function () {
     };
         //Piece Tetriminos
     var piece_map = {
-            "O": function () {//good
-                var that = new Piece({x:4,y:2});
+            "O": function () {
+                var that = new Piece({x: 4, y: 2});
                 that.type = "O";
-                that.class = "O_piece",
+                that.cssClass = "O_piece";
                 that.rotations = [[new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 1)]];
                 return that;
             },
-            "I": function () {//good
+            "I": function () {
                 var that = new Piece({x:3,y:1});
                 that.type = "I";
-                that.class = "I_piece",
+                that.cssClass = "I_piece";
                 that.rotations = [[new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(3, 1)], [new Point(2, 3), new Point(2, 2), new Point(2, 1), new Point(2, 0)]];
                 return that;
             },
-            "S": function () {//good
+            "S": function () {
                 var that = new Piece({x:4,y:2});
                 that.type = "S";
-                that.class = "S_piece",
+                that.cssClass = "S_piece";
                 that.rotations = [[new Point(0, 1), new Point(1, 1), new Point(1, 0), new Point(2, 0)], [new Point(1, 0), new Point(1, 1), new Point(2, 1), new Point(2, 2)]];
                 return that;
             },
             "Z": function () {
                 var that = new Piece({x:4,y:2});
                 that.type = "Z";
-                that.class = "Z_piece",
+                that.cssClass = "Z_piece";
                 that.rotations = [[new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1)], [new Point(1, 2), new Point(1, 1), new Point(2, 1), new Point(2, 0)]];
                 return that;
             },
             "J": function () {
                 var that = new Piece({x:4,y:1});
                 that.type = "J";
-                that.class = "J_piece",
+                that.cssClass = "J_piece";
                 that.rotations = [[new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 2)], [new Point(0, 2), new Point(1, 2), new Point(1, 1), new Point(1, 0)], [new Point(0, 0), new Point(0, 1), new Point(1, 1), new Point(2, 1)], [new Point(1, 2), new Point(1, 1), new Point(1, 0), new Point(2, 0)]];
                 return that;
             },
             "L": function () {
                 var that = new Piece({x:4,y:2});
                 that.type = "L";
-                that.class = "L_piece",
+                that.cssClass = "L_piece";
                 that.rotations = [[new Point(0, 1), new Point(0, 0), new Point(1, 0), new Point(2, 0)], [new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 2)], [ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 0)], [new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(1, 2)]];
                 return that;
             },
             "T": function () {
                 var that = new Piece({x:4,y:1});
                 that.type = "T";
-                that.class = "T_piece",
+                that.cssClass = "T_piece";
                 that.rotations = [[new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(1, 2)], [new Point(1, 2), new Point(1, 1), new Point(1, 0), new Point(2, 1)], [new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(1, 0)], [new Point(1, 2), new Point(1, 1), new Point(1, 0), new Point(0, 1)]];
                 return that;
             }
