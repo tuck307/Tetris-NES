@@ -67,9 +67,9 @@ and (orientation : portrait) {
 /* Styles */
 }
  
-/* Desktops and laptops ----------- */
+/* Desktops and laptops ----------- 
 @media only screen 
-and (min-width : 768px) {
+and (min-width : 768px) {*/
     #game{
         background: rgb(0, 0, 0);
         height: 380px;
@@ -87,6 +87,10 @@ and (min-width : 768px) {
         background:url(img/768_BG.png);
         background-size:100%;
         background-repeat: no-repeat;
+        /*maintains fixed size*/
+        min-width: 750px;
+        width: 750px;
+        max-width: 750px;
     }
      #game_lines {
         text-align: center;
@@ -245,9 +249,9 @@ and (min-width : 768px) {
             position: relative;
             top: 8px;
         }
-}
-
-/* Desktops and laptops ----------- */
+/*}*/
+/*
+ Desktops and laptops ----------- 
 @media only screen 
 and (min-width : 991px) {
     
@@ -262,7 +266,7 @@ and (min-width : 991px) {
     }
     
     #mainGame{
-        /*display:none;*/
+        display:none;
         margin-top:50px;
         height:750px;
         background:url(img/991_BG.png);
@@ -400,7 +404,7 @@ and (min-width : 991px) {
         .stats h3{
             font-size:25px;
             padding-top: 10px;
-        /*    margin-bottom: 20px;*/
+            margin-bottom: 20px;
             margin-bottom: 8px;
             color:white;
         }
@@ -408,7 +412,7 @@ and (min-width : 991px) {
             list-style-type: none;
         }
         .stats ul li{
-           /*border:1px solid;*/
+           border:1px solid;
            margin:auto;
            width:80%;
            padding-top:8px;
@@ -428,7 +432,7 @@ and (min-width : 991px) {
 }
 
 
-/* Desktops and laptops ----------- */
+ Desktops and laptops ----------- 
 @media only screen 
 and (min-width : 1200px) {
     
@@ -443,7 +447,7 @@ and (min-width : 1200px) {
     }
     
     #mainGame{
-        /*display:none;*/
+        display:none;
         margin-top:50px;
         height:850px;
         background:url(img/tetrisBG.png);
@@ -583,7 +587,7 @@ and (min-width : 1200px) {
         .stats h3{
             font-size:25px;
             padding-top: 10px;
-        /*    margin-bottom: 20px;*/
+            margin-bottom: 20px;
             margin-bottom: 8px;
             color:white;
         }
@@ -591,7 +595,7 @@ and (min-width : 1200px) {
             list-style-type: none;
         }
         .stats ul li{
-           /*border:1px solid;*/
+           border:1px solid;
            margin:auto;
            width:80%;
            padding-top:9px;
@@ -608,12 +612,13 @@ and (min-width : 1200px) {
             position: relative;
             top: 13px;
         }
-}
+}*/
 #mainGame{
     display:none;
     border: 3px solid #999;
-    box-shadow: inset 0px 0px 50px rgb(0, 0, 0);
-border-radius: 5%;
+    box-shadow: inset 0px 0px 10px rgb(0, 0, 0);
+/*    box-shadow: inset 0px 0px 50px rgb(0, 0, 0);
+border-radius: 5%;*/
 }
   /*global*/
 .inner,.innerHidden {
@@ -649,6 +654,15 @@ body{
     padding-top:50px;
 }
 
+#level_screen{
+    display:none;
+    text-align:center;
+    background-image:url(img/levelScreen.png);
+    width:750px;
+    height:701px;
+    margin:50px auto 0 auto;
+}
+
 #start_credit img, #start_screen img, #game_setup img{
     margin:auto;
 }
@@ -678,6 +692,8 @@ body{
     width:700px;
     height:650px;
     margin:auto;
+    
+    margin-top: 40px;
 }
 #game_type{
     height: 50px;
@@ -733,6 +749,7 @@ body{
 #A_type {
     display:block;
 }
+
 #B_type {
     display:none;
 }
@@ -758,7 +775,6 @@ body{
 }
 
 #options {
-   
     background: rgb(57, 58, 57);
     color:white;
     padding:10px;
@@ -801,6 +817,44 @@ border-right: 1px solid #999999;
 #navSettings{
     display:none;
 }
+
+#level_screen ul{
+    height: 95px;
+    width: 250px;
+    position: relative;
+    top: 239px;
+    left: 142px;
+    padding: 0;
+}
+
+#level_screen ul li{
+    display: inline-block;
+width: 45px;
+line-height: 40px;
+position: relative;
+left: 2px;
+height: 46px;
+padding: 0;
+margin: 0;
+font-size: 25px;
+font-family: 'Press Start 2P', cursive;
+color: transparent;
+margin-bottom: 4px;
+margin-right: 5px;
+
+border: 5px solid rgba(252, 8, 8, 0);
+}
+
+#level_screen ul li:hover {
+    background:#f7b400;
+    color: #bc1900;
+}
+
+#level_screen ul li.levelBlink {
+    background:#f7b400;
+    color: #bc1900;
+}
+
 </style>
       
  
@@ -875,6 +929,13 @@ border-right: 1px solid #999999;
     <div id='start_screen'>
         <img class ='img-responsive' src='img/startScreen.png' />
     </div>
+
+    <div id='level_screen'>
+        <ul>
+            <li class="levelBlink">0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
+        </ul>
+    </div>
+
     
     <div id='game_setup'>
         <ul id='game_type'>
@@ -987,14 +1048,17 @@ border-right: 1px solid #999999;
  var setup = (function(){
      var passSetup = false;
      var passCredit = false;
+     var passLevel = false;
      var count = 0;
+     var levelRight = 0;
+     var blinkTimer;
      
      var handleKeyPress = (function(){
        
        //TODO need to use children instead of childNodes
             document.onkeydown = function (e) {
                 e = e || window.event;
-                if (e.keyCode === 38) {
+                if (e.keyCode === 38 && passCredit && !passSetup) {
                     //music up
                     if(count > 0){
                         document.getElementById("music").children[count].childNodes[1].style.display = "none";
@@ -1005,7 +1069,7 @@ border-right: 1px solid #999999;
                         Tetris.Game.Audio.sound_player.play('ping');
                     }
                         
-                } else if (e.keyCode === 40) {
+                } else if (e.keyCode === 40 && passCredit && !passSetup) {
                     //music down
                     if(count < 3){
                         document.getElementById("music").children[count].childNodes[1].style.display = "none";
@@ -1015,30 +1079,80 @@ border-right: 1px solid #999999;
                     } else {
                         Tetris.Game.Audio.sound_player.play('ping');
                     }
+                } else if (e.keyCode === 38 && passCredit && passLevel && passSetup) {
+                    //up
                     
-                } else if (e.keyCode === 37) {
+                } else if (e.keyCode === 40 && passCredit && passLevel && passSetup) {
+                    //type down
+                }
+                else if (e.keyCode === 37 && passCredit && !passSetup) {
                     //type left
                     document.getElementById("B_type").style.display = "none";
                     document.getElementById("A_type").style.display = "block";
-                } else if (e.keyCode === 39) {
+                } else if (e.keyCode === 39 && passCredit && !passSetup) {
                     //type right
                     document.getElementById("A_type").style.display = "none";
                     document.getElementById("B_type").style.display = "block";
-                } else if (e.keyCode === 13){
+                } else if (e.keyCode === 39 && passCredit && passLevel && passSetup){
+                    //type right
+                    if(levelRight < 9){
+                       var el = document.getElementById('level_screen').children[0].children[levelRight];
+                       el.className = "";
+                       levelRight++;
+                       clearInterval(blinkTimer);
+                       blinkTimer = setInterval(function(){
+                           if(el.nextSibling.className === "levelBlink"){
+                               el.nextSibling.className = "";
+                           }else{
+                               el.nextSibling.className = "levelBlink";
+                           }
+                       },50);
+                    }
+                } else if (e.keyCode === 37 && passCredit && passLevel && passSetup){
+                    //type left
+                    if(levelRight > 0){
+                        var el = document.getElementById('level_screen').children[0].children[levelRight];
+                        el.className = '';
+                        levelRight--;
+                       clearInterval(blinkTimer);
+                       blinkTimer = setInterval(function(){
+                           if(el.previousSibling.className === "levelBlink"){
+                               el.previousSibling.className = "";
+                           }else{
+                               el.previousSibling.className = "levelBlink";
+                           }
+                       },50);
+                    }
+                }
+                else if (e.keyCode === 13){
                     //enter
                     if(passSetup){
-                        console.log('game starting');
-                        document.getElementById('game_setup').style.display = 'none';
+                        console.log(levelRight);
+                        document.getElementById('level_screen').style.display = 'none';
                         document.getElementById('navSettings').style.display = 'block';
                         document.getElementById('mainGame').style.display = 'block';
                         document.onkeydown = '';
-                        game = Tetris.Game.create();
+                        Tetris.Game.Audio.music_player.play();
+                        Tetris.Game.create(levelRight);
                        
-                    } else if (passCredit){
-                         passSetup = true;
+                    } else if (passCredit && !passLevel){
+                         passLevel = true;
                          document.getElementById('start_screen').style.display = 'none';
                          document.getElementById('game_setup').style.display = 'block';
                          Tetris.Game.Audio.music_player.play();
+                    } else if (passCredit && passLevel){
+                        Tetris.Game.Audio.music_player.pause();
+                        var el = document.getElementById('level_screen').children[0].children[0];
+                        blinkTimer = setInterval(function(){
+                           if(el.className === "levelBlink"){
+                               el.className = "";
+                           }else{
+                               el.className = "levelBlink";
+                           }
+                       },50);
+                        passSetup = true;
+                        document.getElementById('game_setup').style.display = 'none';
+                        document.getElementById('level_screen').style.display = 'block';
                     }
                 }
             };

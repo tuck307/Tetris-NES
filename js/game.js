@@ -1,7 +1,7 @@
 //Game
 Tetris.Game = (function () {
     "use strict";
-    var create = function () {
+    var create = function (level) {
         //global game "self"
             var self;
 
@@ -18,7 +18,9 @@ Tetris.Game = (function () {
                 //create game timer
                 this.timer = Tetris.Timer.create(this);
                 //render board and GUI components
+                this.game_level.add(level);
                 this.render();
+                
             };
             Game.prototype = {
                 "stats": {
